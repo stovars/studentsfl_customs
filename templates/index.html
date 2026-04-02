@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="/static/style.css">
+    <title>
+        university web site
+    </title>
+</head>
+<body>
+<div class="sidebar-trigger"></div>
+<div class="sidebar">
+
+<h2 class="logo">University</h2>
+
+<!-- <a href="/stats">📊 Статистика</a> -->
+<a href="/">🏠 Главная</a>
+<!-- <a href="/students">🎓 Students</a> -->
+<a href="/teachers">🧑‍🏫 Учителя</a>
+
+</div>
+
+
+
+<div class="main-container">
+
+{% if current_user.is_authenticated %}
+<span>
+    welcome {{current_user.username}}
+</span>  
+<a class="btn" href="/logout">logout</a>
+{% else %}
+<a class="btn" href="/login">login</a>
+<a class="btn" href="/register">register</a>
+{% endif %}
+
+
+{% if current_user.role == "student" %}
+<h1>Hello student 👨‍🎓</h1>
+{% else %}
+<h1>Hello user 👋</h1>
+{% endif %}
+
+
+<div class="card">
+
+<h2>Students</h2>
+
+<ul class="students">
+{% for student in students %}
+<li class="student">
+
+{{student.name}} {{student.surname}}
+
+<ul>
+{% for course in student.courses %}
+<li>{{course.title}}</li>
+{% endfor %}
+</ul>
+
+</li>
+{% endfor %}
+</ul>
+
+</div>
+
+</div>
+</body>
+</html>

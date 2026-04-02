@@ -1,0 +1,169 @@
+.sidebar {
+    position: fixed;
+    left: -190px;
+    top: 0;
+    width: 190px;
+    height: 100%;
+    background: linear-gradient(180deg,#7a00ff,#00e5ff);
+    backdrop-filter: blur(10px);
+    box-shadow: 5px 0 25px rgba(0,0,0,0.3);
+    transition: left 0.35s ease;
+    padding-top: 70px;
+    z-index: 1000;
+}
+
+/* выезд */
+
+.sidebar:hover{
+    left: 0;
+}
+
+/* ссылки */
+
+.sidebar a {
+    display: block;
+    color: white;
+    padding: 15px 20px;
+    margin: 8px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    transition: all 0.25s ease;
+}
+
+/* hover эффект */
+
+.sidebar a:hover{
+    background: rgba(255,255,255,0.25);
+    transform: translateX(6px);
+}
+
+/* зона триггера */
+
+.sidebar-trigger {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 20px;
+    height: 100%;
+    z-index: 999;
+}
+
+.sidebar-trigger:hover + .sidebar {
+    left: 0;
+}
+
+.logo{
+    text-align:center;
+    margin-bottom:30px;
+    font-size:22px;
+    font-weight:bold;
+    letter-spacing:1px;
+}
+
+
+body{
+    margin:0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: linear-gradient(135deg, #7a00ff, #00e5ff);
+    min-height:100vh;
+    color:white;
+    padding-left:40px;
+}
+
+
+/* контейнер контента */
+
+.main-container{
+    max-width:900px;
+    margin:auto;
+    padding:40px;
+}
+
+
+/* карточки */
+
+.card{
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(10px);
+    padding:25px;
+    border-radius:15px;
+    margin-top:20px;
+}
+
+
+/* список студентов */
+
+.students{
+    list-style:none;
+    padding:0;
+}
+
+.student{
+    background: rgba(0,0,0,0.2);
+    padding:15px;
+    margin:10px 0;
+    border-radius:10px;
+}
+
+
+/* кнопки */
+
+.btn{
+    display:inline-block;
+    padding:8px 14px;
+    background:white;
+    color:#333;
+    border-radius:8px;
+    text-decoration:none;
+    font-weight:bold;
+    margin-right:10px;
+    transition:0.2s;
+}
+
+.btn:hover{
+    transform:scale(1.05);
+}
+
+
+/* заголовки */
+
+h1{
+    font-size:36px;
+}
+
+h2{
+    margin-top:0;
+}
+
+.user-card {
+            color:#333;
+            background: white;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+
+.resource {
+    margin-top: 10px;
+}
+
+.resource-title {
+    font-weight: bold;
+}
+
+button {
+    margin-top: 10px;
+    padding: 6px 12px;
+    border: none;
+    background: #4CAF50;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #45a049;
+}

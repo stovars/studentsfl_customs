@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <link rel="stylesheet" href="/static/style.css">
+    <title>
+        Admin page
+    </title>
+</head>
+<body>
+
+<div class="sidebar-trigger"></div>
+<div class="sidebar"></div>
+{% for user in users %}
+<div class="user-card">
+    <h1>
+        {{user.username}}  
+    </h1>
+    <form method="POST">
+        <input type="hidden" name="user_id" value="{{user.id}}">
+        {% for resource,actions in all_permissions.items() %}
+        <div class="resource">
+            <div class="resource-title">
+                {{resource}}
+            </div>
+            {% for action in actions %}
+                <label>
+                    <input type="checkbox" 
+                           name="permissions"
+                           value="{{resource}}:{{action}}"
+                           {% if action in user.permissions.get(resource,[]) %}checked{% endif %}>
+                    {{ action }}       
+                </label>
+            {% endfor %}
+        </div>
+        {% endfor %}
+        <br>
+        <button type="submit">
+            save
+        </button>
+
+    </form>
+
+{% endfor %}    
+</body>
+</html>

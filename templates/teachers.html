@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="/static/style.css">
+    <title>
+        university web site
+    </title>
+</head>
+<body>
+<div class="sidebar-trigger"></div>
+<div class="sidebar">
+
+<h2 class="logo">University</h2>
+
+<!-- <a href="/stats">📊 Статистика</a> -->
+<a href="/">🏠 Главная</a>
+<!-- <a href="/students">🎓 Students</a> -->
+<a href="/teachers">🧑‍🏫 Учителя</a>
+
+</div>
+<h1>
+    Teachers
+</h1>
+<ul>
+    {% for teacher in teachers %}
+        <li>
+            {{teacher.name}} {{teacher.surname}}
+            <ul>
+                {% for course in teacher.courses %}
+                <li>
+                    {{course.title}}
+                </li>
+                {% endfor %}
+            </ul>
+        </li>
+    {% endfor %}
+</ul>
+<ul>  
+</ul>
+</body>
+</html>

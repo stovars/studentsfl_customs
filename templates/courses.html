@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+        university web site
+    </title>
+</head>
+<body>
+<h1>
+    Courses
+</h1>
+<ul>
+    {% for course in courses %}
+    <li>
+        {{course.title}}
+        - Teacher: {{course.teacher.name if course.teacher else "not set"}}
+    </li>
+    {% endfor %}
+</ul>
+</body>
+</html>
