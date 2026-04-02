@@ -83,6 +83,7 @@ def admin_page():
     return render_template("admin_users.html", users=users,all_permissions=app.config["ALL_PERMISSIONS"])
 
 
+
 @app.route("/")
 @login_required
 def home():
