@@ -101,6 +101,9 @@ def teachers():
         "teachers.html", teachers=teachers, current_user=current_user
     )
 
+@app.route("/test")
+def test():
+    return("Hello")
 
 @app.route("/courses")
 def courses():
