@@ -103,7 +103,7 @@ def teachers():
 
 @app.route("/test")
 def test():
-    return("PRIVET")
+    return("PAKA")
 
 @app.route("/courses")
 def courses():
