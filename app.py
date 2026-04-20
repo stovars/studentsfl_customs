@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, make_response
 from config import Config
 from models import db, Student, Teacher, Course, User
 from flask_login import (
@@ -110,6 +110,12 @@ def courses():
     courses = Course.query.all()
     return render_template("courses.html", courses=courses)
 
+@app.route("/set_custom_cookie")
+def set_custom_cookie():
+    username=request.args.get("username","guest")
+    response = make_response(f"my name is {username}")
+    response.set_cookie("username",username )
+    return response
 
 if __name__ == "__main__":
     with app.app_context():
