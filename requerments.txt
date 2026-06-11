@@ -1,7 +1,5 @@
 flask
 pytest
 werkzeug
-string
-datetime
 markupsafe
 flask_socketio
