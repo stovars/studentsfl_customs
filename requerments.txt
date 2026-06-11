@@ -1,7 +1,6 @@
 flask
 pytest
 werkzeug
-random
 string
 datetime
 markupsafe
