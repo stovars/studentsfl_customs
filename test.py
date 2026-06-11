@@ -59,5 +59,5 @@ def test_custom_login_success():
 def test_get_weather(mock_get):
     mock_get.return_value.json.return_value={"temperature":"20"}
     data=get_weather()
-    assert data.get("temperature")== "30"
+    assert data.get("temperature")== "20"
     
