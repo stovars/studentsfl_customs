@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+        Background tasks
+    </title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+            width: 100%;
+            max-width: 450px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            color: #0a1128;
+        }
+
+        input {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            border: 1px solid #ddd;
+            font-size: 1rem;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            background: #f59e0b;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #d97706;
+        }
+
+        #result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            background: #f1f5f9;
+            display: none;
+        }
+
+    </style>    
+</head>
+
+<body>
+<div class="container">
+    <h1>
+        background task
+    </h1>
+    <form id="email-form">
+        <input type="email" name="email" id="email" placeholder="enter your email" required>
+        <button type="submit">
+            send email
+        </button>
+
+    </form>
+    <div id="result">
+    </div>
+</div>
+<script>
+    const form=document.getElementById("email-form")
+    const result=document.getElementById("result")
+    form.addEventListener("submit", async (e) =>{
+        e.preventDefault()
+        const email=document.getElementById("email").value 
+        const formData=new FormData()
+        formData.append("email",email)
+        const response = await fetch('/send-email', {
+            method: 'POST',
+            body: formData
+        });
+
+        const data = await response.json();
+
+        result.style.display = 'block';
+
+        result.innerHTML = `
+            <strong>${data.message}</strong><br><br>
+            Task ID: ${data.task_id}
+        `;
+        form.reset()
+    }
+    )
+</script>
+</body>
+</html>

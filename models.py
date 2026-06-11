@@ -1,7 +1,7 @@
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import backref
 from flask_login import UserMixin
-from sqlalchemy import JSON
+from sqlalchemy import JSON, text
 
 db = SQLAlchemy()
 
@@ -58,5 +58,13 @@ class User(db.Model, UserMixin):
 
     def has_permission(self, resource, action):
         return action in self.permissions.get(resource, [])
+
+class ShortLink(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    short_link = db.Column(db.String(400),nullable=False, unique=True)
+    link = db.Column(db.String(400),nullable=False)
+    def __repr__(self):
+        return f"original_link {self.link}"
+
     
     

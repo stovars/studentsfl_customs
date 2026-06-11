@@ -2,25 +2,16 @@
 <html>
 <head>
     <link rel="stylesheet" href="/static/style.css">
+    <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
     <title>
         🏠 Главная
     </title>
 </head>
 <body>
-<div class="sidebar-trigger"></div>
-<div class="sidebar">
 
-<h2 class="logo">University</h2>
+    
 
-<!-- <a href="/stats">📊 Статистика</a> -->
-<a href="/">🏠 Главная</a>
-<!-- <a href="/students">🎓 Students</a> -->
-<a href="/teachers">🧑‍🏫 Учителя</a>
-<a href="/admin_page">👩‍💻Админ панель</a>
-<a href="/courses">📖Уроки</a>
-</div>
-
-
+{% include 'sidebar.html' %}
 
 <div class="main-container">
 
@@ -34,12 +25,77 @@
 <a class="btn" href="/register">register</a>
 {% endif %}
 
+<div class="chat-container">
+    <div class="chat-header">
+        67 chat
+    </div>
+    <div class="messages" id="messages"></div>
+    <form class="chat-form" id="chat-form">
+        <input type="text" id="message-input" placeholder="Введите текст" autocomplete="off" required>
+        <button type="submit">
+            отправить сообщение 
+        </button>
+    </form>
+</div>
+<script>
+    const socket=io()
+    const form=document.getElementById("chat-form")
+    const input=document.getElementById("message-input")
+    const messages=document.getElementById("messages")
+
+    form.addEventListener("submit", function(e){
+        e.preventDefault()
+        const message=input.value
+        socket.send(message)
+        input.value=""
+    })
+    
+    socket.on("message",function(msg){
+        const div=document.createElement("div")
+        div.classList.add("message")
+        div.innerText=msg
+        messages.appendChild(div)
+        messages.scrollTop=messages.scrollHeight
+    })
+</script>
+
+
 
 {% if current_user.role == "student" %}
 <h1>Hello student 👨‍🎓</h1>
 {% else %}
 <h1>Hello user 👋</h1>
 {% endif %}
+<div class="slider">
+    <img id="sliderImage" src="{{ url_for('static', filename='images/nomer1.png') }}"/>
+</div>
+<button onclick="nextPhoto()">
+    <
+</button>
+
+<button onclick="prevPhoto()">
+    >
+</button>
+
+<script>
+    const images=["{{ url_for('static', filename='images/nomer1.png') }}","{{ url_for('static', filename='images/nomer2.png') }}","{{ url_for('static', filename='images/nomer3.jpg') }}"]
+    let index=0;
+
+    function showImage(){
+        document.getElementById("sliderImage").src=images[index]
+    }
+    function nextPhoto(){
+        index=(index+1)%images.length;
+        showImage();
+    }
+    function prevPhoto() {
+        index = (index - 1 + images.length) % images.length;
+        showImage();
+    }
+
+
+</script>
+
 
 
 <div class="card">
